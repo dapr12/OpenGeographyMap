@@ -39,3 +39,15 @@ sf_gm <- sf_gb  %>%
 plot(st_geometry(sf_gm))
 
 
+mydata <- data.frame( LAD22NM= c("Bolton","Bury","Manchester","Oldham","Rochdale",
+                                "Salford","Stockport","Tameside","Trafford","Wigan"), 
+                     Income = c("Low","Low","Medium","Low","Low","High","Low","Low","Low","Low"))
+
+# Join data frames
+sf_gm_withdata <- left_join(sf_gm, mydata, by = "LAD22NM")
+
+ggplot(sf_gm_withdata) + 
+  geom_sf(aes(fill=Income)) + theme_bw()
+
+
+
